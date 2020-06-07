@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="stylesheet.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <title>Weather.com</title>
+    <script src="https://kit.fontawesome.com/b54ad91dd0.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container-fluid" style="padding-left:30px; padding-right:30px; background-color: #0a97b0; ">
+         <div class="heading">
+              <h2>AccuWeather</h2><i class="fas fa-sun"></i><p id="date"></p>
+         </div>
+          <div class="grid-container" id="firstGridcont">
+             <div class="grid-item">
+                <p style="margin-bottom: 0px; margin-top: 1.2em;">Min.</p>
+                <i class="fas fa-temperature-low fa-2x"></i><br>
+                <p id="min" style="margin-top: 0.25em;"></p> <span class="mn">°</span>
+             </div>
+             <div class="grid-item">
+                 <h1 style="font-size:50px;"></h1>
+                 <span style="font-size:50px;">°</span><br>
+                 <span id="description" style="font-size:25px;"></span>
+              </div>
+                 <div class="grid-item" >
+                     <p style="margin-bottom: 0px; margin-top: 1.2em;">Max.</p>
+                     <i class="fas fa-temperature-high fa-2x"></i><br>
+                     <p id="max" style="margin-top: o.25em;"></p><span class="mn">°</span>
+                 </div>
+           </div>
+
+        <hr style="margin-top: 0px; margin-bottom: 0px; border-top-width: 2px; color: rosybrown;">
+
+        <div class="grid-container" id="secondGridcont">
+            <div class="grid-item" ><i class="fas fa-cloud fa-sm"><br><span id="cloud"></span>%</i></div>
+             <div class="grid-item">  <i class="fas fa-wind fa-sm"><br><span id="wind"></span>km/h</i> </div>
+              <div class="grid-item"> <i class="fas fa-burn fa-sm"><br><span id="dewpoint"></span>°</i></div>
+        </div>
+        <hr style="margin-top: 0px; margin-bottom: 0px; border-top-width: 2px; color: rosybrown;">
+          <section class="country-wise">
+              <p>Search for a particular City here.</p>
+             <form id="search">
+               <input id="search-input" type="text" class="search" placeholder="search" required>
+               <button class="search-btn" id="search-btn"></button>
+             </form>
+             <div id="result-data"></div>
+          </section>
+    Developed by <strong style="color:brown;">Sandy</strong> 
+</div>
+<script src= "script.js"></script>
+<!--<script src= "script2.js"></script>-->
+</body>
+</html>
