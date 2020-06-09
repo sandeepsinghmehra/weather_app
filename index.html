@@ -6,10 +6,9 @@
     <link href="stylesheet.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <title>Weather.com</title>
-    <script src="https://kit.fontawesome.com/b54ad91dd0.js" crossorigin="anonymous"></script>
 </head>
-<body>
-    <div class="container-fluid" style="padding-left:30px; padding-right:30px; background-color: #0a97b0; ">
+<body onload="getLocation()" style="min-height: 100vh; background-color: #0a97b0;">
+    <div class="container-fluid" style="padding-left:30px; padding-right:30px;  ">
          <div class="heading">
               <h2>AccuWeather</h2><i class="fas fa-sun"></i><p id="date"></p>
          </div>
@@ -34,22 +33,24 @@
         <hr style="margin-top: 0px; margin-bottom: 0px; border-top-width: 2px; color: rosybrown;">
 
         <div class="grid-container" id="secondGridcont">
-            <div class="grid-item" ><i class="fas fa-cloud fa-sm"><br><span id="cloud"></span>%</i></div>
-             <div class="grid-item">  <i class="fas fa-wind fa-sm"><br><span id="wind"></span>km/h</i> </div>
-              <div class="grid-item"> <i class="fas fa-burn fa-sm"><br><span id="dewpoint"></span>°</i></div>
+            <div class="grid-item" ><i class="fas fa-cloud"></i><span id="cloudset"><span id="cloud"></span><span>%</span></span></div>
+             <div class="grid-item">  <i class="fas fa-wind"></i><span id="windset"><span id="wind"></span><span>km/h</span></span></div>
+              <div class="grid-item"> <i class="fas fa-burn"></i><span id="dewset"><span id="dewpoint"></span><span>°</span></span></div>
         </div>
         <hr style="margin-top: 0px; margin-bottom: 0px; border-top-width: 2px; color: rosybrown;">
           <section class="country-wise">
               <p>Search for a particular City here.</p>
              <form id="search">
-               <input id="search-input" type="text" class="search" placeholder="search" required>
-               <button class="search-btn" id="search-btn"></button>
+               <input id="search-input" type="text" class="search" placeholder="search city" required>
+               <button class="search-btn" id="search-btn"><i class="fas fa-search-location"></i></button>
              </form>
              <div id="result-data"></div>
           </section>
-    Developed by <strong style="color:brown;">Sandy</strong> 
-</div>
-<script src= "script.js"></script>
-<!--<script src= "script2.js"></script>-->
+    </div>
+     <footer id="footer">
+           Developed by <a href="https://github.com/sandeepsinghmehra"><strong style="color:brown;">Sandy</strong></a> 
+     </footer>
+     <script src="https://kit.fontawesome.com/b54ad91dd0.js" crossorigin="anonymous"></script>
+     <script src= "script.js"></script>
 </body>
 </html>

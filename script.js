@@ -1,24 +1,32 @@
-//apikey = c1caa91fe86cd25d0f1147993b1dc17c;
-//https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={Your Api Key}
-window.addEventListener('load', getLocation);
+const part = 'current';
 const proxy ='https://cors-anywhere.herokuapp.com/';
 const myApi = 'https://api.openweathermap.org/data/2.5/';
 const key = 'c1caa91fe86cd25d0f1147993b1dc17c';
 const search = document.getElementById('search');
 const searchInput = document.getElementById('search-input');
 const resultsContainer = document.getElementById('result-data');
+const dayTemp = document.querySelector('h1');
+const maxTemp = document.querySelector('#max');
+const minTemp = document.querySelector('#min');
+const weatherDescpt = document.querySelector('#description');
+const windSpeed = document.querySelector('#wind');
+const dewPoint = document.querySelector('#dewpoint');
+const cloud = document.querySelector('#cloud');
+const dateCurrent = document.querySelector('#date');
+
+
+var date = new Date();  //make a Date object 
+dateCurrent.innerHTML = date;     //Show the date in html page
 
 //Get the weather with your location
 async function getWeatherAW(lat, lon) {
-    try{
-        const part = 'current';
+    try{ 
         const result = await fetch(`${proxy}${myApi}onecall?lat=${lat}&lon=${lon}&exclude=${part}&appid=${key}&lang=en&units=metric`);
         const data = await result.json();
-        console.log(data);
+    //    console.log(data);
         const today = data.daily[0];
-        console.log(`Temperatures in ${data.timezone} stay between ${today.temp.min} and ${today.temp.max}.`);
+    //    console.log(`Temperatures in ${data.timezone} stay between ${today.temp.min} and ${today.temp.max}.`);
         await showdata(today);
-//await trynewData(today);
     }
       catch(error) {
         alert(error);
@@ -27,13 +35,11 @@ async function getWeatherAW(lat, lon) {
 
  async function getWeatherSearch(lat, lon, city) {
     try{
-        const part = 'current';
         const result = await fetch(`${proxy}${myApi}onecall?lat=${lat}&lon=${lon}&exclude=${part}&appid=${key}&lang=en&units=metric`);
         const data = await result.json();
-        console.log(data);
+    //    console.log(data);
         const today = data.daily[0];
-        console.log(`Temperatures in ${data.timezone} stay between ${today.temp.min} and ${today.temp.max}.`);
-    //    await showdata(today);
+     //   console.log(`Temperatures in ${data.timezone} stay between ${today.temp.min} and ${today.temp.max}.`);
         await trynewData(today, city);
     }
       catch(error) {
@@ -42,72 +48,53 @@ async function getWeatherAW(lat, lon) {
  }
  //Get the weather detail Which city-weather do you asked in the search box
  async function searchWeather() { 
-  let  city = searchInput.value;
+  const  city = searchInput.value;
   searchInput.value = '';
   try{
       const results = await fetch(`${proxy}${myApi}weather?q=${city}&appid=${key}&units=metric`);
       const data = await results.json();
       console.log(data);
-     const searchCoord = data.coord;
-     // console.log(`cooradinate are lat ${today.coord.lat} and ${today.coord.lon}`);
-     console.log(`${city} that you search in current time.`);
-    await searchPosition(searchCoord, city);
-    await trynewData(city);
+      const searchCoord = data.coord;// console.log(`cooradinate are lat ${today.coord.lat} and ${today.coord.lon}`);
+      await searchPosition(searchCoord, data.name);
   }
     catch(error) {
       alert(error);
   }
 }
-function searchPosition (position, city) {
-  getWeatherSearch(position.lat, position.lon, city);
-  console.log(`lat: ${position.lat} and lon: ${position.lon}`);
-}
 
-  var d = new Date();
-  document.querySelector('#date').innerHTML =  d;
- function showdata(today) {
-//console.log(document.getElementById("mainDemo"));
-  document.querySelector('h1').innerHTML = today.temp.day;
-  document.querySelector('#max').innerHTML = today.temp.max;
-  document.querySelector('#min').innerHTML = today.temp.min;
-  document.querySelector('#description').innerHTML = today.weather[0].description;
-  document.querySelector('#wind').innerHTML = today.wind_speed;
-  document.querySelector('#dewpoint').innerHTML = today.dew_point;
-  document.querySelector('#cloud').innerHTML = today.clouds;
-  
- }
+ 
 function getLocation() {
    if (navigator.geolocation) {
      navigator.geolocation.getCurrentPosition(showPosition);
-   //  navigator.geolocation.getCurrentPosition(getWeatherAW( position.coords.latitude, position.coords.longitude));
    } else { 
      x.innerHTML = "Geolocation is not supported by this browser.";
    }
  }
-  function showPosition(position) {
-   getWeatherAW( position.coords.latitude, position.coords.longitude);
-  
-} 
+function showPosition(position) {
+   getWeatherAW(position.coords.latitude, position.coords.longitude);
+}
 
+function searchPosition (position, city) {
+  getWeatherSearch(position.lat, position.lon, city); //console.log(`lat: ${position.lat} and lon: ${position.lon}`);
+}
 
-   /*
- function appendData(data) {
-  var mainContainer = document.getElementById("myData");
-  for (var i = 0; i < data.length; i++) {
-      var div = document.createElement("div");
-      div.innerHTML = 'Name: ' + data[i].firstName + ' ' + data[i].lastName;
-      mainContainer.appendChild(div);
-  }}*/
-/*let dataAria; 
-getWeatherAW(2487956).then(data => {
-    dataLondon = data
-    console.log(dataAria);
-});*/
+//Seaching city on the search button
 search.addEventListener('submit', e => {
   e.preventDefault();
   searchWeather();
 });
 
+//Entire data will be send the html page
+function showdata(today) {
+  const sTemp = today.temp;
+  dayTemp.innerHTML = sTemp.day;
+  maxTemp.innerHTML = sTemp.max;
+  minTemp.innerHTML = sTemp.min;
+  weatherDescpt.innerHTML= today.weather[0].description;
+  windSpeed.innerHTML = today.wind_speed;
+  dewPoint.innerHTML = today.dew_point;
+  cloud.innerHTML = today.clouds; 
+ }
 function trynewData (today, city) {
      let htmlcode;
         htmlcode = `<h2 class="country-name">${city}</h2> 
@@ -131,3 +118,4 @@ function trynewData (today, city) {
 `;
      resultsContainer.innerHTML = htmlcode;           
 }
+//window.addEventListener('load', getLocation());
