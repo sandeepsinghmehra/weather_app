@@ -15,21 +15,21 @@ const cloud = document.querySelector('#cloud');
 const dateCurrent = document.querySelector('#date');
 
 
-var date = new Date();  //make a Date object 
-dateCurrent.innerHTML = date;     //Show the date in html page
+const date = new Date();
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const [month, day, year] = [months[date.getMonth()], date.getDate(), date.getFullYear()];
+dateCurrent.innerHTML = [month , day , year];     
 
 //Get the weather with your location
 async function getWeatherAW(lat, lon) {
     try{ 
         const result = await fetch(`${proxy}${myApi}onecall?lat=${lat}&lon=${lon}&exclude=${part}&appid=${key}&lang=en&units=metric`);
         const data = await result.json();
-    //    console.log(data);
         const today = data.daily[0];
-    //    console.log(`Temperatures in ${data.timezone} stay between ${today.temp.min} and ${today.temp.max}.`);
         await showdata(today);
     }
       catch(error) {
-        alert(error);
+        console.log(error);
     }
  }
 
@@ -37,13 +37,11 @@ async function getWeatherAW(lat, lon) {
     try{
         const result = await fetch(`${proxy}${myApi}onecall?lat=${lat}&lon=${lon}&exclude=${part}&appid=${key}&lang=en&units=metric`);
         const data = await result.json();
-    //    console.log(data);
         const today = data.daily[0];
-     //   console.log(`Temperatures in ${data.timezone} stay between ${today.temp.min} and ${today.temp.max}.`);
         await trynewData(today, city);
     }
       catch(error) {
-        alert(error);
+        console.log(error);
     }
  }
  //Get the weather detail Which city-weather do you asked in the search box
@@ -53,38 +51,35 @@ async function getWeatherAW(lat, lon) {
   try{
       const results = await fetch(`${proxy}${myApi}weather?q=${city}&appid=${key}&units=metric`);
       const data = await results.json();
-      console.log(data);
-      const searchCoord = data.coord;// console.log(`cooradinate are lat ${today.coord.lat} and ${today.coord.lon}`);
+      const searchCoord = data.coord;
       await searchPosition(searchCoord, data.name);
   }
     catch(error) {
-      alert(error);
+      console.log(error);
   }
 }
 
- 
 function getLocation() {
    if (navigator.geolocation) {
-     navigator.geolocation.getCurrentPosition(showPosition);
+     return navigator.geolocation.getCurrentPosition(showPosition);
    } else { 
      x.innerHTML = "Geolocation is not supported by this browser.";
+     return x.innerHTML;
    }
  }
 function showPosition(position) {
-   getWeatherAW(position.coords.latitude, position.coords.longitude);
+   return getWeatherAW(position.coords.latitude, position.coords.longitude);
 }
 
 function searchPosition (position, city) {
-  getWeatherSearch(position.lat, position.lon, city); //console.log(`lat: ${position.lat} and lon: ${position.lon}`);
+  return getWeatherSearch(position.lat, position.lon, city); 
 }
 
-//Seaching city on the search button
 search.addEventListener('submit', e => {
   e.preventDefault();
   searchWeather();
 });
 
-//Entire data will be send the html page
 function showdata(today) {
   const sTemp = today.temp;
   dayTemp.innerHTML = sTemp.day;
@@ -98,24 +93,22 @@ function showdata(today) {
 function trynewData (today, city) {
      let htmlcode;
         htmlcode = `<h2 class="country-name">${city}</h2> 
-        <div class="grid-container" id="firstGridcont">
-        <div class="grid-item">
-           <p style="margin-bottom: 0px; margin-top: 1.2em;">Min.</p>
+        <div class="main">
+        <div class="item">
+           <p>Min.</p>
            <i class="fas fa-temperature-low fa-2x"></i><br>
-           <p id="min" style="margin-top: 0.25em;">${today.temp.min}</p> <span class="mn">°</span>
+           <p id="min">${today.temp.min}</p> <span class="mn">°</span>
         </div>
-        <div class="grid-item">
-            <h1 style="font-size:50px;"></h1>
+        <div class="item">
             <span style="font-size:50px;">${today.temp.day}°</span><br>
-            <span id="description" style="font-size:25px;">${today.weather[0].description}</span>
+            <span id="description">${today.weather[0].description}</span>
          </div>
-            <div class="grid-item" >
-                <p style="margin-bottom: 0px; margin-top: 1.2em;">Max.</p>
+            <div class="item" >
+                <p>Max.</p>
                 <i class="fas fa-temperature-high fa-2x"></i><br>
-                <p id="max" style="margin-top: o.25em;">${today.temp.max}</p><span class="mn">°</span>
+                <p id="max">${today.temp.max}</p><span class="mn">°</span>
             </div>
       </div>
 `;
      resultsContainer.innerHTML = htmlcode;           
 }
-//window.addEventListener('load', getLocation());

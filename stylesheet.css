@@ -1,18 +1,42 @@
 *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     text-align: center;
 }
+body{
+    height: 100vh;    
+}
+.container{
+    background: #0a97b0;
+}
+.main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-around;
+    align-items: center;
+}
 
-/*All id are defined */
-#firstGridcont{
-    margin-bottom: 1.59em;
+h1 {
+    padding: 0px;
+    display: inline-block;
+    color: whitesmoke;
 }
-#secondGridcont{
-    padding-top: 1.5625em;
-    padding-bottom: 1.5625em;
+h2 {
+   color:whitesmoke;
+   font-style: italic;
+   font-family: Arial, Helvetica, sans-serif;
+   display: inline-block;
+   padding-right:0px;
 }
-#date{
-    padding-top: 1.25em;
-    padding-bottom: 1.25em;
+p{
+    color: white;
+    font-size: larger;
+}
+span{
+    color: whitesmoke;
 }
 #max, #min {
     color:wheat;
@@ -20,18 +44,8 @@
     padding-top: 0.15em;
     font-size: 1.25em;
 }
-#cloudset,#windset,#dewset{
-    float: right;
-    padding-right: 5.7%;
-    padding-top: 14%;
-    padding-bottom: 14%;
-    color: white;
-}
-#footer{
-    margin-top: 1.25em;
-    padding-top: 0.5625em;
-    padding-bottom: 0.5625em;
-}
+
+
 #search{
     background:transparent;
     transition:0.25s;
@@ -50,25 +64,6 @@
  border-color:#105dea;
 }
 
-/* All classes are defined */
-.grid-container {
-    display: grid;
-    align-content: center;
-    grid-template-columns: auto auto auto;
-    background-color: #2196F3;
-    padding: 0.59em;
-    grid-column-gap: 0.59em;
-    margin-top: 0.59em;
-    margin-bottom: 0.59em;
-}
-  
-.grid-item {
-    background-color: #0a97b0;
-    border:1px solid rgb(18, 47, 143); 
-    border-radius: 0.45em;
-    box-sizing: border-box;
-    padding: 0px;
-  }
 .heading{
     margin-top: 0px;
     padding-top: 3.02em;
@@ -118,34 +113,12 @@
     color:blueviolet;
 }
 .fa-cloud,.fa-wind,.fa-burn{
-    float: left;
-    padding-left: 10.7%;
-    padding-top: 14%;
-    padding-bottom: 14%;
     color:white;
 }
 
-
-/* All tag are defined */
-body{
-    min-height: 100vh;   
-}
-h1 {
-    padding: 0px;
-    display: inline-block;
-    color: whitesmoke;
-}
-h2 {
-   color:whitesmoke;
-   font-style: italic;
-   font-family: Arial, Helvetica, sans-serif;
-   display: inline-block;
-   padding-right:0px;
-}
-p{
+#footer{
+    margin-top: 1.25em;
+    padding-top: 0.5625em;
+    padding-bottom: 0.5625em;
     color: white;
-    font-size: larger;
-}
-span{
-    color: whitesmoke;
 }
