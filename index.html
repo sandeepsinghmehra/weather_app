@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="stylesheet.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <title>Weather.com</title>
+</head>
+<body onload="getLocation()" style="background: #0a97b0;">
+    <div class="container">
+         <div class="heading">
+              <h2>AccuWeather</h2><i class="fas fa-sun"></i>
+              <p id="date"></p>
+         </div>
+          <div class="main">
+             <div class="item">
+                <p>Min.</p>
+                <i class="fas fa-temperature-low fa-2x"></i><br>
+                <p id="min" ></p> <span class="mn">°</span>
+             </div>
+             <div class="item">
+                 <h1></h1>
+                 <span>°</span><br>
+                 <span id="description"></span>
+              </div>
+              <div class="item" >
+                    <p>Max.</p>
+                    <i class="fas fa-temperature-high fa-2x"></i><br>
+                    <p id="max"></p><span class="mn">°</span>
+               </div>
+           </div>
+
+        <div class="main">
+            <div class="item" >
+                <div><i class="fas fa-cloud"></i></div>
+                <span id="cloud"></span><span>%</span>
+            </div>
+            <div class="item">
+                <div><i class="fas fa-wind"></i></div>
+                <span id="wind"></span><span>km/h</span>
+            </div>
+            <div class="item">
+                <div><i class="fas fa-burn"></i></div>
+                <span id="dewpoint"></span><span>°</span>
+            </div>
+        </div>
+
+        <hr style="margin-top: 20px; margin-bottom: 0px; border-top-width: 2px; color: rgb(206, 197, 197);">
+          <section class="country-wise">
+              <p>Search for a particular City here.</p>
+             <form id="search">
+               <input id="search-input" type="text" class="search" placeholder="search city" required>
+               <button class="search-btn" id="search-btn"><i class="fas fa-search-location"></i></button>
+             </form>
+             <div id="result-data"></div>
+          </section>
+    </div>
+     <footer id="footer">
+           Developed by <a href="https://github.com/sandeepsinghmehra"><strong style="color:brown;">Sandy</strong></a> 
+     </footer>
+     <script src="https://kit.fontawesome.com/b54ad91dd0.js" crossorigin="anonymous"></script>
+     <script src= "script.js"></script>
+</body>
+</html>

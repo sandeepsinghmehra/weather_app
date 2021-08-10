@@ -1,0 +1,124 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-align: center;
+}
+body{
+    height: 100vh;    
+}
+.container{
+    background: #0a97b0;
+}
+.main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-around;
+    align-items: center;
+}
+
+h1 {
+    padding: 0px;
+    display: inline-block;
+    color: whitesmoke;
+}
+h2 {
+   color:whitesmoke;
+   font-style: italic;
+   font-family: Arial, Helvetica, sans-serif;
+   display: inline-block;
+   padding-right:0px;
+}
+p{
+    color: white;
+    font-size: larger;
+}
+span{
+    color: whitesmoke;
+}
+#max, #min {
+    color:wheat;
+    display: inline-block;
+    padding-top: 0.15em;
+    font-size: 1.25em;
+}
+
+
+#search{
+    background:transparent;
+    transition:0.25s;
+    transform: transiate(-20%, -20%);
+    border-color: #105dea;
+}
+#search input[type = "text"]{
+    text-align:center;
+    border: 1px solid red;
+    outline:none;
+    border-radius:24px;
+    transition:0.25s;
+}
+#search input[type = "text"]:focus{
+ width:13.5em;
+ border-color:#105dea;
+}
+
+.heading{
+    margin-top: 0px;
+    padding-top: 3.02em;
+    padding-bottom: 1em;
+}
+.country-wise{
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.search{
+    margin:1.2em 0 1.2em 1.2em;
+    background-color: azure;
+}
+
+.search-btn {
+    cursor: pointer;
+    background-color: azure;
+    border-radius: 1.5em;
+    border: 1px solid red;
+}
+.search-btn:hover{
+    cursor: pointer;
+    background-color: rgb(99, 30, 76);
+    border: 1px solid white;
+}
+.mn {
+    font-size:1.25em;
+}
+.fas {
+    border-radius: 0%;
+}
+.fa-temperature-high {
+    color: orangered;
+    padding-top: 0.15em;
+}
+.fa-temperature-low {
+    color: #00fed0;
+    padding-top: 0.15em;
+}
+.fa-sun {
+    color: red;
+    display: inline-block;
+    background-color:#0a97b0;
+}
+
+.fa-search-location{
+    color:blueviolet;
+}
+.fa-cloud,.fa-wind,.fa-burn{
+    color:white;
+}
+
+#footer{
+    margin-top: 1.25em;
+    padding-top: 0.5625em;
+    padding-bottom: 0.5625em;
+    color: white;
+}
