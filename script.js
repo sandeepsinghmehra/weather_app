@@ -23,8 +23,9 @@ dateCurrent.innerHTML = [month , day , year];
 //Get the weather with your location
 async function getWeatherAW(lat, lon) {
     try{ 
-        const result = await fetch(`${proxy}${myApi}onecall?lat=${lat}&lon=${lon}&exclude=${part}&appid=${key}&lang=en&units=metric`);
-        const data = await result.json();
+        const Response = await fetch(`${proxy}${myApi}onecall?lat=${lat}&lon=${lon}&exclude=${part}&appid=${key}&lang=en&units=metric`);
+        const data = await Response.json();
+        console.log(data);
         const today = data.daily[0];
         await showdata(today);
     }
@@ -61,18 +62,17 @@ async function getWeatherAW(lat, lon) {
 
 function getLocation() {
    if (navigator.geolocation) {
-     return navigator.geolocation.getCurrentPosition(showPosition);
+     navigator.geolocation.getCurrentPosition(showPosition);
    } else { 
      x.innerHTML = "Geolocation is not supported by this browser.";
-     return x.innerHTML;
    }
  }
 function showPosition(position) {
-   return getWeatherAW(position.coords.latitude, position.coords.longitude);
+   getWeatherAW(position.coords.latitude, position.coords.longitude);
 }
 
 function searchPosition (position, city) {
-  return getWeatherSearch(position.lat, position.lon, city); 
+  getWeatherSearch(position.lat, position.lon, city); 
 }
 
 search.addEventListener('submit', e => {
